@@ -1,0 +1,98 @@
+{
+    "graphite_checks": [
+        {
+            "ref": "CHECK1",
+            "name": "Graphite check name", 
+            "active": true, 
+            "importance": "ERROR", 
+            "frequency": 360, 
+            "debounce": 0, 
+            "metric": "keepLastValue(transformNull(service.engine.events.received,0))", 
+            "check_type": ">", 
+            "value": "5", 
+            "expected_num_hosts": 0, 
+            "x_range": 11520, 
+            "points_to_check": 1
+        }
+    ],
+    "icmp_checks": [
+        {
+            "ref": "CHECK2",
+            "name": "Default Ping Check for Instance name", 
+            "active": true, 
+            "importance": "ERROR", 
+            "frequency": 5, 
+            "debounce": 0
+        }
+    ],
+    "jenkins_checks": [
+        {
+            "ref": "CHECK3",
+            "name": "Jenkins check name", 
+            "active": true, 
+            "importance": "CRITICAL", 
+            "frequency": 1, 
+            "debounce": 0, 
+            "max_queued_build_time": 10
+        }
+    ],
+    "http_checks": [
+        {
+            "ref": "CHECK4",
+            "name": "Http check name", 
+            "active": true, 
+            "importance": "WARNING", 
+            "frequency": 5, 
+            "debounce": 0, 
+            "endpoint": "https://localhost/", 
+            "username": "user", 
+            "password": "pass", 
+            "text_match": "[Tt]itle", 
+            "status_code": "200", 
+            "timeout": 30, 
+            "verify_ssl_certificate": true
+        }
+    ],
+    "services": [
+        {
+            "ref": "SERVICE1",
+            "name": "Service name", 
+            "users_to_notify": [], 
+            "alerts_enabled": true, 
+            "status_checks": [
+                "CHECK1",
+                "CHECK2"
+            ], 
+            "email_alert": true, 
+            "hipchat_alert": true, 
+            "sms_alert": false, 
+            "telephone_alert": false, 
+            "script_alert": false, 
+            "script_extra_argument": null, 
+            "hackpad_id": "", 
+            "url": "http://localhost:6800/p/1/spider/test_monitoring/"
+        }
+    ],
+    "instances": [
+        {
+            "ref": "INSTANCE1",
+            "name": "Instance name", 
+            "users_to_notify": [
+                1
+            ], 
+            "alerts_enabled": true, 
+            "status_checks": [
+                "CHECK3", 
+                "CHECK4"
+            ], 
+            "email_alert": false, 
+            "hipchat_alert": true, 
+            "sms_alert": false, 
+            "telephone_alert": false, 
+            "script_alert": false, 
+            "script_extra_argument": null, 
+            "hackpad_id": null, 
+            "address": "http://localhost"
+        }
+    ]
+}
