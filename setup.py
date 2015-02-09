@@ -10,7 +10,7 @@ setup(
     download_url = 'https://github.com/andrewbaxter/cabot-conf/tarball/v0.0.1',
     license = 'BSD',
     description = 'Use a JSON file to create Cabot instances, services, and checks.',
-    long_description = open('readme.txt', 'r').read(),
+    long_description = open('readme.md', 'r').read(),
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
