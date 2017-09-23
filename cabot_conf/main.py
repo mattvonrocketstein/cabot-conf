@@ -27,7 +27,7 @@ def factory_reset(args):
         for item in found:
             requests.delete(
                 url=urlparse.urljoin(
-                    args.cabot, 
+                    args.cabot,
                     'api/{}/{}'.format(name, item['id'])
                 ),
                 auth=HTTPBasicAuth(args.user, args.password),
@@ -88,7 +88,7 @@ def create(args):
                 check_type,
                 data=element,
             )
-            checks[ref] = created['id']
+            checks[ref] = created['id'] if created else None
 
     for element in config['services']:
         ref = element.pop('ref')
@@ -110,7 +110,7 @@ def create(args):
             'instances',
             data=element,
         )
-        instances[ref] = created['id']
+        instances[ref] = created['id'] if created else None
 
 
 def main():
@@ -120,28 +120,28 @@ def main():
     )
     parser.add_argument('config', help='Config file')
     parser.add_argument(
-        '-r', 
-        '--factory_reset', 
-        help='Remove all existing objects, indiscriminately.', 
-        default=False, 
+        '-r',
+        '--factory_reset',
+        help='Remove all existing objects, indiscriminately.',
+        default=False,
         action='store_true'
     )
     parser.add_argument(
-        '-c', 
-        '--cabot', 
-        help='Cabot host', 
+        '-c',
+        '--cabot',
+        help='Cabot host',
         required=True
     )
     parser.add_argument(
-        '-u', 
-        '--user', 
-        help='Cabot user', 
+        '-u',
+        '--user',
+        help='Cabot user',
         required=True
     )
     parser.add_argument(
-        '-p', 
-        '--password', 
-        help='Cabot password', 
+        '-p',
+        '--password',
+        help='Cabot password',
         required=True
     )
     args = parser.parse_args()
